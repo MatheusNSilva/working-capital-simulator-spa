@@ -16,14 +16,11 @@ COPY . .
 # Construir a aplicação React
 RUN npm run build
 
-# Usar uma imagem de servidor Nginx para servir os arquivos estáticos
-FROM nginx:alpine
-
-# Copiar os arquivos buildados para o diretório padrão do Nginx
-COPY --from=build /app/build /usr/share/nginx/html
+# Instalar o serve globalmente
+RUN npm install -g serve
 
 # Expor a porta que o Nginx vai usar (por exemplo, 80)
 EXPOSE 80
 
-# Comando para rodar o Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Comando para rodar o serve
+CMD ["serve", "-s", "build", "-l", "80"]
