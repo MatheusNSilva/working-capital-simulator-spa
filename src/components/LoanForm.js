@@ -108,7 +108,7 @@ const LoanForm = ({ onCalculate }) => {
             Pós-fixado com juros sobre saldo devedor e correção na parcela
           </MenuItem>
         </Select>
-        {["preFixedInterestOB", "preFixedInterestInstallments"].includes(
+        {["postFixedInterestCorrectionOB", "postFixedInterestCorrectionInstallments", "postFixedInterestOBCorrectionInstallments"].includes(
           loanType
         ) && (
           <>
