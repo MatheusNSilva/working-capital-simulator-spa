@@ -8,6 +8,7 @@ import {
   TextField 
 } from "@mui/material";
 import '../styles/LoanForm.css';
+import { useFontStyles, useButtonStyles } from '../hooks/MUIComponentsStyles.js';
 
 const LoanForm = ({ onCalculate }) => {
   const [loanType, setLoanType] = useState("");
@@ -20,13 +21,18 @@ const LoanForm = ({ onCalculate }) => {
     correctionRate: "",
   });
 
+  const fontClasses = useFontStyles();
+  const buttonClasses = useButtonStyles();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSelectChange = (e) => {
-    setLoanType(e.target.value);
+    const { value } = e.target; 
+    setLoanType(value);
+    setFormData({ ...formData, calculationOption: value });
   };
 
   const handleSubmit = async (e) => {
@@ -41,64 +47,74 @@ const LoanForm = ({ onCalculate }) => {
   };
 
   return (
-    <FormControl id='form' onSubmit={handleSubmit}>
-      <FormLabel>Valor do Empréstimo</FormLabel>
+    <form onSubmit={handleSubmit}> 
+    <FormControl id='form'>
+      <FormLabel className={fontClasses.root}>Valor do Empréstimo</FormLabel>
       <TextField
         variant="outlined"
+        className={fontClasses.root}
+        name="loanAmount"
         type="number"
         onChange={handleChange}
         required
       />
-      <FormLabel>Taxa de Juros</FormLabel>
+      <FormLabel className={fontClasses.root}>Taxa de Juros</FormLabel>
       <TextField
         variant="outlined"
+        className={fontClasses.root}
+        name="interestRate"
         type="number"
         onChange={handleChange}
         required
       />
-      <FormLabel>Número de Parcelas</FormLabel>
+      <FormLabel className={fontClasses.root}>Número de Parcelas</FormLabel>
       <TextField
         variant="outlined"
+        className={fontClasses.root}
+        name="installments"
         type="number"
         onChange={handleChange}
         required
       />
-      <FormLabel>Mês e Ano de Concessão</FormLabel>
+      <FormLabel className={fontClasses.root}>Mês e Ano de Concessão</FormLabel>
       <TextField
         variant="outlined"
+        className={fontClasses.root}
+        name="concessionDate"
         type="month"
         onChange={handleChange}
         required
       />
-      <FormLabel>Opção de Calculo</FormLabel>
+      <FormLabel className={fontClasses.root}>Opção de Calculo</FormLabel>
       <Select
         value={loanType}
-        onChange={(e) => {
-          handleChange(e);
-          handleSelectChange(e);
-        }}
+        onChange={handleSelectChange}
         required
       >
-        <MenuItem value="a">Pré-fixado com juros sobre saldo devedor</MenuItem>
-        <MenuItem value="b">Pré-fixado com juros na parcela</MenuItem>
-        <MenuItem value="c">Pós-fixado com juros e correção no saldo devedor</MenuItem>
-        <MenuItem value="d">Pós-fixado com juros e correção na parcela</MenuItem>
-        <MenuItem value="e">Pós-fixado com juros sobre saldo devedor e correção na parcela</MenuItem>
+        <MenuItem value="preFixedInterestOB">Pré-fixado com juros sobre saldo devedor</MenuItem>
+        <MenuItem value="preFixedInterestInstallments">Pré-fixado com juros na parcela</MenuItem>
+        <MenuItem value="postFixedInterestCorrectionOB">Pós-fixado com juros e correção no saldo devedor</MenuItem>
+        <MenuItem value="postFixedInterestCorrectionInstallments">Pós-fixado com juros e correção na parcela</MenuItem>
+        <MenuItem value="postFixedInterestOBCorrectionInstallments">Pós-fixado com juros sobre saldo devedor e correção na parcela</MenuItem>
       </Select>
-      <FormLabel>Taxa de Correção Monetária</FormLabel>
+      <FormLabel className={fontClasses.root}>Taxa de Correção Monetária</FormLabel>
       <TextField
         variant="outlined"
+        className={fontClasses.root}
+        name="correctionRate"
         type="number"
         onChange={handleChange}
-        disabled={["a", "b"].includes(loanType)}
+        disabled={["preFixedInterestOB", "preFixedInterestInstallments"].includes(loanType)}
         required
       />
       <Button 
+        className={buttonClasses.root}
         type="submit"
         variant="contained" 
         id='button'
-      >Calcular Parcelas</Button>
+      >Simular</Button>
     </FormControl>
+    </form>
   );
 };
 

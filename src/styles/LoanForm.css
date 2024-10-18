@@ -1,12 +1,13 @@
 #form {
-    border: 0.5px solid #666; 
-    border-radius: 12px ;
-    width: 100%;
-    padding: 1.5%
+    border: 0.5px solid #fff; 
+    border-radius: 5px;
+    width: 97%;
+    padding: 1.5%;
+    background-color: #fff;
 }
 
 #button {
     background-color: #E77600;
     align-self: flex-end;
-    margin-top: 20px
+    margin-top: 20px;
 }

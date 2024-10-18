@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, use } from 'react';
 import { InstallmentsTable, LoanForm } from "../components";
 import mockCalculateInstallments from '../services/Mock';
 import '../styles/HomePage.css';
