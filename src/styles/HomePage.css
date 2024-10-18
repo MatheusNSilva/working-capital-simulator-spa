@@ -1,0 +1,22 @@
+#page {
+    display: flex;
+    flex-direction: column
+}
+
+#header {
+    background: #333;
+    font: 32px 700 'Open Sans'; 
+    color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000
+}
+
+#body {
+    padding: 8% 5% 3%
+}
+
+#title {
+    padding-left: 5%
+}

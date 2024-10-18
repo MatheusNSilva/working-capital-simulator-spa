@@ -1,0 +1,12 @@
+#form {
+    border: 0.5px solid #666; 
+    border-radius: 12px ;
+    width: 100%;
+    padding: 1.5%
+}
+
+#button {
+    background-color: #E77600;
+    align-self: flex-end;
+    margin-top: 20px
+}
