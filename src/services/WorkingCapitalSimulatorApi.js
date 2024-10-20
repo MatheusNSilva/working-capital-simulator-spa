@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: process.env.NODE_API_URL || 'http://localhost:3000/api', // Substitua pela URL do seu backend se estiver hospedado
+  baseURL: process.env.NODE_API_URL || 'http://localhost:3000', // Substitua pela URL do seu backend se estiver hospedado
 });
 
 export const calculateInstallments = async (data) => {
