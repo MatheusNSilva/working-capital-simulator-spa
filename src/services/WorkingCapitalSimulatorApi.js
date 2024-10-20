@@ -6,7 +6,7 @@ const api = axios.create({
 
 export const calculateInstallments = async (data) => {
   try {
-    const response = await api.post('/calculate-installments', data);
+    const response = await api.post('api/calculate-installments', data);
     return response.data;
   } catch (error) {
     console.error('Erro, não foi possível calcular as parcelas:', error);
