@@ -11,7 +11,7 @@ import "../styles/LoanForm.css";
 import {
   useFontStyles,
   useButtonStyles,
-} from "../hooks/MUIComponentsStyles.js";
+} from "../styles/MUIComponentsStyles.js";
 
 const LoanForm = ({ onCalculate }) => {
   const [loanType, setLoanType] = useState("");
@@ -38,15 +38,9 @@ const LoanForm = ({ onCalculate }) => {
     setFormData({ ...formData, calculationOption: value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     onCalculate(formData);
-    // try {
-    //   const response = await axios.post('/api/calculate', formData);
-    //   onCalculate(response.data); // Envia o resultado para o componente pai (HomePage)
-    // } catch (error) {
-    //   console.error('Erro ao calcular as parcelas:', error);
-    // }
   };
 
   return (

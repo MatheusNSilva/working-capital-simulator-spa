@@ -1,15 +1,27 @@
-import React, { useState, use } from 'react';
+import React, { useState, useEffect } from 'react';
 import { InstallmentsTable, LoanForm } from "../components";
-import mockCalculateInstallments from '../services/Mock';
+import { calculateInstallments } from '../services/WorkingCapitalSimulatorApi';
 import '../styles/HomePage.css';
 
 const HomePage = () => {
   const [installments, setInstallments] = useState([]);
+  const [showTable, setShowTable] = useState(false);
 
-  const handleCalculate = (loanData) => {
-    const calculatedInstallments = mockCalculateInstallments(loanData);
+  useEffect(() => {
+    if (installments.length > 0) {
+      setShowTable(true);
+    }
+  }, [installments]);
+
+  const handleCalculate = async (loanData) => {
+    const installmentsData = await calculateInstallments(loanData);
+    const calculatedInstallments = Object.entries(installmentsData.calculatedInstallments);
     setInstallments(calculatedInstallments);
   };
+
+  const RenderTable = (isOpen) => (
+    isOpen.isOpen && <InstallmentsTable installments={installments} />
+  );
 
   return (
     <div id='page'>
@@ -18,7 +30,7 @@ const HomePage = () => {
       </div>
       <div id='body'>
         <LoanForm onCalculate={handleCalculate} />
-        {installments.length > 0 && <InstallmentsTable installments={installments} />}
+        <RenderTable isOpen={showTable} />
       </div>
     </div>
   );

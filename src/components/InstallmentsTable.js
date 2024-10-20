@@ -10,7 +10,7 @@ import {
   Paper,
 } from "@mui/material";
 import "../styles/InstallmentsTable.css";
-import { useFontStyles } from "../hooks/MUIComponentsStyles.js";
+import { useFontStyles } from "../styles/MUIComponentsStyles.js";
 
 const InstallmentsTable = ({ installments }) => {
   const classes = useFontStyles();
@@ -27,7 +27,9 @@ const InstallmentsTable = ({ installments }) => {
     setPage(0); // Voltar para a primeira página
   };
 
-  const paginatedInstallments = installments.slice(
+  const installmentsNormalized = installments.map(installment => installment[1]);
+
+  const paginatedInstallments = installmentsNormalized.slice(
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage
   );
@@ -45,7 +47,7 @@ const InstallmentsTable = ({ installments }) => {
         <TableBody>
           {paginatedInstallments.map((installment, index) => (
             <TableRow key={index}>
-              <TableCell className={classes.root}>{installment.installmentNumber}</TableCell>
+              <TableCell className={classes.root}>{installment.installment}</TableCell>
               <TableCell className={classes.root}>
                 {installment.paymentDate}
               </TableCell>
