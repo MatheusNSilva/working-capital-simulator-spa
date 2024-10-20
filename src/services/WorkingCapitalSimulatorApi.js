@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiURL = process.env.NODE_API_URL || 'http://localhost:3000'; 
+const apiURL = process.env.REACT_APP_API_URL || 'http://localhost:3000'; 
 
 export const calculateInstallments = async (data) => {
   try {
