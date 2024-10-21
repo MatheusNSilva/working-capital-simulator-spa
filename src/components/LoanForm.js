@@ -50,11 +50,27 @@ const LoanForm = ({ onCalculate }) => {
     setFormData({ ...formData, calculationOption: value });
   };
 
+  const sanitizeNumericFields = (fields) => {
+    const sanitizedData = { ...fields };
+
+    const numericFields = ["loanAmount", "interestRate", "installments", "correctionRate"];
+
+    numericFields.forEach(field => {
+      if (sanitizedData[field]) {
+        sanitizedData[field] = sanitizedData[field].replace(/\./g, "");
+        sanitizedData[field] = sanitizedData[field].replace(",", ".");
+      }
+    });
+
+    return sanitizedData;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const cleanLoanAmount = formData.loanAmount.replace(/\./g, "");
-    const cleanFormData = { ...formData, loanAmount: cleanLoanAmount };
-    onCalculate(cleanFormData);
+
+    const sanitizedFormData = sanitizeNumericFields(formData);
+
+    onCalculate(sanitizedFormData);
   };
 
   const handleClear = () => {
