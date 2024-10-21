@@ -1,6 +1,5 @@
 // Função mock para simular a resposta do backend
 const mockCalculateInstallments = (loanData) => {
-    // Aqui você pode criar uma lógica simples para simular as parcelas
     const { loanAmount, interestRate, installments } = loanData;
   
     const installmentsTotal = [];
@@ -10,7 +9,7 @@ const mockCalculateInstallments = (loanData) => {
       paymentDate.setMonth(paymentDate.getMonth() + i);
   
       installmentsTotal.push({
-        installmentNumber: i,
+        installment: i,
         amount: (loanAmount / installments) * (1 + interestRate / 100),
         paymentDate: paymentDate.toLocaleDateString(),
       });

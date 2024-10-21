@@ -1,71 +1,61 @@
-# Getting Started with Create React App
+# Simulador de Financiamento de Capital de Giro
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto é o front-end de um simulador de financiamento de capital de giro desenvolvido em React. O aplicativo permite que os usuários calculem parcelas de empréstimos com base em diferentes opções de cálculo e condições.
 
-## Available Scripts
+## Tecnologias
 
-In the project directory, you can run:
+O projeto foi desenvolvido utilizando as seguintes tecnologias:
 
-### `npm start`
+- [React](https://reactjs.org/)
+- [Material-UI](https://mui.com/)
+- [Axios](https://axios-http.com/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Funcionalidades
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Cálculo das parcelas de empréstimos com base em:
+  - Valor do empréstimo
+  - Taxa de juros
+  - Número de parcelas
+  - Mês e ano de concessão
+  - Opções de cálculo (pré-fixado, pós-fixado, etc.)
+  - Taxa de correção monetária (quando aplicável)
+- Formatação de campos de entrada com máscara para facilitar a visualização.
+- Botão para limpar os campos do formulário.
 
-### `npm test`
+## Instalação
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Para instalar e executar este projeto localmente, siga os passos abaixo:
 
-### `npm run build`
+1. Clone o repositório:
+   git clone https://github.com/seu_usuario/simulador-capital-giro.git
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Entre no diretório e instla as depências:
+    cd simulador-capital-giro
+    npm install
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Execute o aplicativo:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    npm start
+    
+O aplicativo será iniciado em http://localhost:3000.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Rodando em um Container
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Se preferir, você pode rodar o projeto em um container Docker. Para isso, siga os passos abaixo:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Certifique-se de ter o Docker instalado na sua máquina.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    docker build -t simulador-capital-giro .
 
-## Learn More
+## Após a construção da imagem, inicie o container:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    docker run -p 3000:3000 simulador-capital-giro
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# working-capital-simulator-spa
+## Orientações para testar aplicação
+    Acesse o repositório com back-end do Simulador de financiamento para capital de giro
+    URL:https://github.com/MatheusNSilva/working-capital_simulator
+    
+    O Mock.js no caminho: /src/services/Mock.js
+    Permite testar o formulário e a tabela sem a a interação com o backend, mas será necessário
+    adaptar o HomePage,js.
