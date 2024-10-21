@@ -1,7 +1,14 @@
+html, body {
+    margin: 0; 
+    height: 100%; 
+    background-color: #666;
+}
+
 #page {
     display: flex;
     flex-direction: column;
-    background-color: #666;
+    height: 100%;
+    width: 100%
 }
 
 #header {
@@ -15,7 +22,8 @@
 }
 
 #body {
-    padding: 8% 5% 3%
+    padding: 0% 5% 5%;
+    padding-top: calc(60px + 5%)
 }
 
 #title {

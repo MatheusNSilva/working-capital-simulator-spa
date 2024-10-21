@@ -29,7 +29,19 @@ const LoanForm = ({ onCalculate }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+
+    if (name !== "concessionDate") {
+      const numericValue = value.replace(/[^0-9,]/g, ""); // Remove tudo que não é número
+      const formattedValue = numericValue.replace(/\B(?=(\d{3})+(?!\d))/g, "."); // Adiciona ponto a cada três dígitos
+
+      const commaCount = (formattedValue.match(/,/g) || []).length;
+
+      if (commaCount > 1) return;
+
+      setFormData({ ...formData, [name]: formattedValue });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSelectChange = (e) => {
@@ -43,6 +55,18 @@ const LoanForm = ({ onCalculate }) => {
     onCalculate(formData);
   };
 
+  const handleClear = () => {
+    setLoanType("");
+    setFormData({
+      loanAmount: "",
+      interestRate: "",
+      installments: "",
+      concessionDate: "",
+      calculationOption: "",
+      correctionRate: "",
+    });
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <FormControl id="form">
@@ -51,7 +75,7 @@ const LoanForm = ({ onCalculate }) => {
           variant="outlined"
           className={fontClasses.root}
           name="loanAmount"
-          type="number"
+          value={formData.loanAmount}
           onChange={handleChange}
           required
         />
@@ -60,7 +84,7 @@ const LoanForm = ({ onCalculate }) => {
           variant="outlined"
           className={fontClasses.root}
           name="interestRate"
-          type="number"
+          value={formData.interestRate}
           onChange={handleChange}
           required
         />
@@ -69,7 +93,7 @@ const LoanForm = ({ onCalculate }) => {
           variant="outlined"
           className={fontClasses.root}
           name="installments"
-          type="number"
+          value={formData.installments}
           onChange={handleChange}
           required
         />
@@ -102,9 +126,11 @@ const LoanForm = ({ onCalculate }) => {
             Pós-fixado com juros sobre saldo devedor e correção na parcela
           </MenuItem>
         </Select>
-        {["postFixedInterestCorrectionOB", "postFixedInterestCorrectionInstallments", "postFixedInterestOBCorrectionInstallments"].includes(
-          loanType
-        ) && (
+        {[
+          "postFixedInterestCorrectionOB",
+          "postFixedInterestCorrectionInstallments",
+          "postFixedInterestOBCorrectionInstallments",
+        ].includes(loanType) && (
           <>
             <FormLabel className={fontClasses.root}>
               Taxa de Correção Monetária
@@ -113,20 +139,31 @@ const LoanForm = ({ onCalculate }) => {
               variant="outlined"
               className={fontClasses.root}
               name="correctionRate"
-              type="number"
+              value={formData.correctionRate}
               onChange={handleChange}
               required
             />
           </>
         )}
-        <Button
-          className={buttonClasses.root}
-          type="submit"
-          variant="contained"
-          id="button"
-        >
-          Simular
-        </Button>
+        <div id='form-buttons'>
+          <Button
+            className={buttonClasses.root}
+            type="submit"
+            variant="contained"
+            id="button"
+          >
+            Simular
+          </Button>
+          <Button
+            className={buttonClasses.root}
+            type="button"
+            onClick={handleClear}
+            variant="outlined"
+            id="clear-button"
+          >
+            Limpar
+          </Button>
+        </div>
       </FormControl>
     </form>
   );

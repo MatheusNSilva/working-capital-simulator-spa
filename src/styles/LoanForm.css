@@ -6,8 +6,19 @@
     background-color: #fff;
 }
 
+#form-buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+}
+
 #button {
     background-color: #E77600;
-    align-self: flex-end;
-    margin-top: 20px;
+}
+
+#clear-button {
+    right: 1%;
+    background-color: #fff;
+    border-color: #E77600;
 }

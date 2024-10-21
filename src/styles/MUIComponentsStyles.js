@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { makeStyles } from '@mui/styles';
 
 const useFontStyles = makeStyles({
@@ -13,10 +12,17 @@ const useFontStyles = makeStyles({
 const useButtonStyles = makeStyles({
     root: {
         color: '#ffffff',
-        fontFamily: 'Open Sans',
-        fontSize: 18,
-        fontWeight: 800,
-    }
+        '&.MuiButton-contained': {
+            fontFamily: 'Open Sans',
+            fontWeight: 800,
+        },
+        '&.MuiButton-outlined': {
+            color: '#E77600',
+            fontFamily: 'Open Sans',
+            fontWeight: 800,
+        }
+    },
+
 });
 
 export { useFontStyles, useButtonStyles };
