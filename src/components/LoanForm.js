@@ -52,7 +52,9 @@ const LoanForm = ({ onCalculate }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onCalculate(formData);
+    const cleanLoanAmount = formData.loanAmount.replace(/\./g, "");
+    const cleanFormData = { ...formData, loanAmount: cleanLoanAmount };
+    onCalculate(cleanFormData);
   };
 
   const handleClear = () => {
